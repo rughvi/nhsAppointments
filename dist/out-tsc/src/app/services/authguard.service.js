@@ -16,7 +16,7 @@ var AuthGuardService = /** @class */ (function () {
         this.router = router;
     }
     AuthGuardService.prototype.canActivate = function (route, state) {
-        if (this.userService.isValid()) {
+        if (this.userService.isUserLoggedOn()) {
             return true;
         }
         else {

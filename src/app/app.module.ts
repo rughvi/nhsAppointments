@@ -5,12 +5,13 @@ import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material';
+import {MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MAT_DATE_LOCALE} from '@angular/material';
 
 import {apiwrapper} from './apis/apiwrapper';
 
 import {AuthGuardService} from './services/authguard.service';
 import {UserService} from './services/user.service';
+import {CacheService} from './services/cache.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -49,9 +50,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
     FormsModule
   ],
-  providers: [AuthGuardService, UserService, apiwrapper,
+  providers: [AuthGuardService, UserService, CacheService, apiwrapper,
     {provide:MAT_DATE_LOCALE, useValue:'en-GB'}],
   bootstrap: [AppComponent]
 })
