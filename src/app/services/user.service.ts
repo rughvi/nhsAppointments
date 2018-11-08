@@ -17,6 +17,10 @@ export class UserService {
     return this.apiwrapper.createUser(data);
   }
 
+  updateUser(userId, data){
+    return this.apiwrapper.updateUser(userId, data);
+  }
+
   loginUser(data){
       return this.apiwrapper.loginUser(data).pipe(
         map((res:LoginUserResponseModel) => {

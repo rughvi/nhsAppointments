@@ -77,49 +77,27 @@
   </nav> -->
 
   <div class="container">
-      <div class="offset-3 col-6">
-        <nav  class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+      <div class="offset-sm-3 col-sm-6">
+        <nav  class="navbar navbar-dark bg-secondary fixed-top">
           <a class="navbar-brand" href="#">Angular</a>
           <button class="navbar-toggler hidden-sm-down" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" 
             data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse  pull-right" id="navbarsDefault">
-            <!-- <ul class="navbar-nav mr-auto navbar-right">
-              <li><a href="#"><span class="fas fa-user-cog"></span> Logout</a></li>
-              <li><a [routerLink]="['/settings']"><span class="glyphicon glyphicon-log-in"></span> Settings</a></li>
-              <li class="nav-item dropdown" ngbDropdown>
-                <a class="nav-link dropdown-toggle" id="id01" href="#" ngbDropdownToggle>Files</a>
-                <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
-                  <a class="dropdown-item" href="#">HTML</a>
-                  <a class="dropdown-item" href="#">TS</a>
-                  <a class="dropdown-item" href="#">JS</a>
-                </div>
-              </li>
-            </ul> -->
             <ul class="nav navbar-nav navbar-right pull-right">
-                <li><a class="nav-link" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a class="nav-link" [routerLink]="['/settings']"><span class="glyphicon glyphicon-user"></span> Settings</a></li>
                 <li><a class="nav-link" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               </ul>
           </div>
         </nav>
-        <!-- <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>                        
-                </button>
-                <a class="navbar-brand" href="#">WebSiteName</a>
-              </div>
-              <div class="collapse navbar-collapse" id="myNavbar">                
-                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
-              </div>
-            </div>
-          </nav> -->
-    </div>
+        <hr/>
+        <hr/>
+        <div class="row">          
+          <button type="button" class="btn btn-outline-secondary" style="position: absolute; left: 0px;">Add Hospital</button>
+        </div>
+        <br/>
+        <br/>
+        <p>gbkjgbafkmbmngnmfgfnamdm dmfn dmnf dm adm adm adm amdfb afbafb amfb amf bamdfb madf bmadf b</p>
+      </div>
   </div>

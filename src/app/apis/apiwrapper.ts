@@ -23,6 +23,18 @@ export class apiwrapper{
             catchError(this.handleError)
         );
     }
+
+    // This is for registration / create account
+    // data : {firstName:'', lastName:'', dateOfBirth:'dd/MM/yyyy',email:''}
+    // response: null
+    updateUser(userId, data) {
+        let url = apiconfig.updateUserUrl.replace(/{userId}/g,userId);
+        let httpOptions = this.getHeaderOptions();
+        return this.http.put(url, data, httpOptions).pipe(
+            map(res=> res),
+            catchError(this.handleError)
+        );
+    }
     
     // This is for login user
     // data : {username:'', password:''}
@@ -46,25 +58,40 @@ export class apiwrapper{
 
     //get user details for user id
     getUserDetails(userId){
-        let url = apiconfig.userDetailsGetUrl + userId;
+        let url = apiconfig.userDetailsGetUrl.replace(/{userId}/g,userId);
         console.log('Get user details url ' + url);
-        let authenticationToken = this.cacheService.getAuthenticationToken();
-        const httpOptions = {
-            headers: new HttpHeaders({
-              'Content-Type':  'application/json',
-            // "Content-Type": "application/x-www-form-urlencoded",
-              'Authorization': 'Bearer ' + authenticationToken
-            })
-          };
-        // let headers = new HttpHeaders()
-        //                 .set("Authorization", "Bearer " + authenticationToken);
-        //headers.append("Content-Type", "application/x-www-form-urlencoded");
-
+        let httpOptions = this.getHeaderOptions();
         return this.http.get(url, httpOptions).pipe(
             map(res => res),
             catchError(this.handleError)
         );
     }
+
+    //TODO
+    getUserHospitals(userId){
+        let url = apiconfig.userHospitalsGetUrl.replace(/{userId}/g,userId);
+        console.log('Get user appointments url ' + url);
+        let authenticationToken = this.cacheService.getAuthenticationToken();
+    }
+
+    //TODO
+    //get appointments for the user id
+    // getAppointmentsForUserId(userId){
+    //     let url = apiconfig.userDetailsGetUrl.replace(/{userId}/g,userId);
+    //     console.log('Get user appointments url ' + url);
+    //     let authenticationToken = this.cacheService.getAuthenticationToken();
+    //     const httpOptions = {
+    //         headers: new HttpHeaders({
+    //           'Content-Type':  'application/json',
+    //         // "Content-Type": "application/x-www-form-urlencoded",
+    //           'Authorization': 'Bearer ' + authenticationToken
+    //         })
+    //       };
+    //     return this.http.get(url, httpOptions).pipe(
+    //         map(res => res),
+    //         catchError(this.handleError)
+    //     );
+    // }
 
     private handleError<T extends ErrorModel>(error:any) {
         let errorModel = apiwrapper.getErrorModel(error);
@@ -91,5 +118,16 @@ export class apiwrapper{
             errorModel.errorMessage = error.error
         }
         return errorModel;
+    }
+
+    private getHeaderOptions() {
+        let authenticationToken = this.cacheService.getAuthenticationToken();
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+              'Authorization': 'Bearer ' + authenticationToken
+            })
+          };
+          return httpOptions;
     }
 }
