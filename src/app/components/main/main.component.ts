@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CacheService} from '../../services/cache.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private cacheService:CacheService) { }
+  username='test';
+  isNavbarCollapsed=true;
   ngOnInit() {
+    let user = this.cacheService.getCurrentUser();
+    this.username = user.username;
+    
   }
 
 }

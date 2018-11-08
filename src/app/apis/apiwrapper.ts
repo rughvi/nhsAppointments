@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 import * as apiconfig from './apiconfig';
 import {ErrorModel} from '../models/ErrorModel';
+import {CacheService} from '../services/cache.service';
+import {LoginUserResponseModel} from '../models/LoginUserResponseModel';
 
 @Injectable()
 export class apiwrapper{    
     
-    constructor(private http:HttpClient) {
+    constructor(private cacheService:CacheService, private http:HttpClient) {
         
     }    
 
@@ -26,8 +28,9 @@ export class apiwrapper{
     // data : {username:'', password:''}
     // response : token
     loginUser(data){
-        return this.http.post(apiconfig.loginUrl, data).pipe(
-            map(res => res),
+        return this.http.post<LoginUserResponseModel>(apiconfig.loginUrl, data)
+        .pipe(
+            map((res) => res),
             catchError(this.handleError)
         );
     }
@@ -41,7 +44,38 @@ export class apiwrapper{
         );
     }
 
-    private handleError(error: any) {
+    //get user details for user id
+    getUserDetails(userId){
+        let url = apiconfig.userDetailsGetUrl + userId;
+        console.log('Get user details url ' + url);
+        let authenticationToken = this.cacheService.getAuthenticationToken();
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+            // "Content-Type": "application/x-www-form-urlencoded",
+              'Authorization': 'Bearer ' + authenticationToken
+            })
+          };
+        // let headers = new HttpHeaders()
+        //                 .set("Authorization", "Bearer " + authenticationToken);
+        //headers.append("Content-Type", "application/x-www-form-urlencoded");
+
+        return this.http.get(url, httpOptions).pipe(
+            map(res => res),
+            catchError(this.handleError)
+        );
+    }
+
+    private handleError<T extends ErrorModel>(error:any) {
+        let errorModel = apiwrapper.getErrorModel(error);
+        let item = {} as T;
+        item.error = errorModel.error;
+        item.errorMessage = errorModel.errorMessage;
+        item.status = errorModel.status;
+        return throwError(errorModel);
+    };
+
+    private static getErrorModel(error:any):ErrorModel{
         let errorModel = new ErrorModel();
         if (error.error instanceof ErrorEvent) {
           // A client-side or network error occurred. Handle it accordingly.
@@ -56,7 +90,6 @@ export class apiwrapper{
             errorModel.status = error.status;
             errorModel.errorMessage = error.error
         }
-        // return an observable with a user-facing error message
-        return Observable.throw(errorModel);
-      };
+        return errorModel;
+    }
 }

@@ -4,6 +4,7 @@ import {apiwrapper} from '../apis/apiwrapper';
 import { catchError, retry, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {CacheService} from '../services/cache.service';
+import { LoginUserResponseModel } from '../models/LoginUserResponseModel';
 
 @Injectable()
 export class UserService {  
@@ -17,21 +18,20 @@ export class UserService {
   }
 
   loginUser(data){
-    return Observable.create((observer) =>{
-      this.apiwrapper.loginUser(data).subscribe(
-        res => {
+      return this.apiwrapper.loginUser(data).pipe(
+        map((res:LoginUserResponseModel) => {
           this.cacheService.setup(true, res.token, res.timeToLive, res.id, data.username, data.password);
-          observer.next(res);
-          observer.completed();
-        },
-        error => {
-          observer.error(error);
-        },
-        () => {});  
-    });    
+          return res;
+        }),
+        error => error
+      );
   }
 
   resetpassword(username){
     return this.apiwrapper.resetPassword(username);
+  }
+
+  getUserDetails(userId){
+    return this.apiwrapper.getUserDetails(userId);
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import { ErrorStatus } from '../../apis/apiErrorStatus';
 
 @Component({
   selector: 'app-login',
@@ -28,10 +29,9 @@ export class LoginComponent implements OnInit {
     .subscribe(response => {
       this.router.navigate(['/main']);
     }, errorModel => {
-      if(errorModel.status == 401){
+      if(errorModel.status == ErrorStatus.Unauthorized){
         this.snackbar.open('Invalid username or password', '', {duration:2000, panelClass:['red-snackbar']});
       }
-      //alert(error.message);
     }, () => {});
   }
 }

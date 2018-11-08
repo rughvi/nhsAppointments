@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MAT_DATE_LOCALE} from '@angular/material';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {apiwrapper} from './apis/apiwrapper';
 
@@ -19,13 +21,17 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { MainComponent } from './components/main/main.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { SettingsComponent } from './components/settings/settings.component';
 import { ValidateEqualDirective } from './directives/validate-equal.directive';
+
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },
   { path: 'main', component: MainComponent, canActivate:[AuthGuardService] },
+  // {path:'main', component:MainComponent},
+  {path:'settings', component:SettingsComponent, canActivate:[AuthGuardService] },
   { path: '', redirectTo: '/main', pathMatch: 'full'},
   { path: '**', component: PagenotfoundComponent }
 ];
@@ -38,7 +44,8 @@ const appRoutes: Routes = [
     ForgotpasswordComponent,
     MainComponent,
     PagenotfoundComponent,
-    ValidateEqualDirective
+    ValidateEqualDirective,
+    SettingsComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -51,7 +58,8 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [AuthGuardService, UserService, CacheService, apiwrapper,
     {provide:MAT_DATE_LOCALE, useValue:'en-GB'}],
