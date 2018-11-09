@@ -38,4 +38,8 @@ export class UserService {
   getUserDetails(userId){
     return this.apiwrapper.getUserDetails(userId);
   }
+
+  addHospital(userId, data){
+    return this.apiwrapper.addHospital(userId, data);
+  }
 }

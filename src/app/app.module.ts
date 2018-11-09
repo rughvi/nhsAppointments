@@ -23,6 +23,7 @@ import { MainComponent } from './components/main/main.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ValidateEqualDirective } from './directives/validate-equal.directive';
+import { AddhospitalComponent } from './components/addhospital/addhospital.component';
 
 
 const appRoutes: Routes = [
@@ -30,9 +31,9 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },
   { path: 'main', component: MainComponent, canActivate:[AuthGuardService] },
-  // {path:'main', component:MainComponent},
-  {path:'settings', component:SettingsComponent, canActivate:[AuthGuardService] },
-  { path: '', redirectTo: '/main', pathMatch: 'full'},
+  { path:'addhospital', component:AddhospitalComponent, canActivate:[AuthGuardService] },
+  { path:'settings', component:SettingsComponent, canActivate:[AuthGuardService] },
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     MainComponent,
     PagenotfoundComponent,
     ValidateEqualDirective,
-    SettingsComponent
+    SettingsComponent,
+    AddhospitalComponent
   ],
   imports: [
     RouterModule.forRoot(

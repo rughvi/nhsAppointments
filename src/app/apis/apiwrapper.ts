@@ -67,6 +67,17 @@ export class apiwrapper{
         );
     }
 
+    //adds hospital to the user id
+    //data : {hospitalId: "33333", hospitalName: "wsss"}
+    addHospital(userId, data){
+        let url = apiconfig.addHospitalToUserUrl.replace(/{userId}/g,userId);
+        let httpOptions = this.getHeaderOptions();
+        return this.http.post(url, data, httpOptions).pipe(
+            map(res=> res),
+            catchError(this.handleError)
+        );
+    }
+
     //TODO
     getUserHospitals(userId){
         let url = apiconfig.userHospitalsGetUrl.replace(/{userId}/g,userId);

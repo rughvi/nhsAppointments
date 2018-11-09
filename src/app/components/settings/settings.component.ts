@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
     let user = this.cacheService.getCurrentUser();
     this.userService.getUserDetails(user.id)
     .subscribe(userDetails => {
-      let userTemp = {};
+      let userTemp:any = {};
       userTemp = userDetails;
       let dobStr =userTemp.dateOfBirth;
       var parts = dobStr.split("/");

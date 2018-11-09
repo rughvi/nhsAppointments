@@ -78,7 +78,7 @@
 
   <div class="container">
       <div class="offset-sm-3 col-sm-6">
-        <nav  class="navbar navbar-dark bg-secondary fixed-top">
+        <nav  class="navbar navbar-dark bg-primary fixed-top">
           <a class="navbar-brand" href="#">Angular</a>
           <button class="navbar-toggler hidden-sm-down" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" 
             data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@
         <hr/>
         <hr/>
         <div class="row">          
-          <button type="button" class="btn btn-outline-secondary" style="position: absolute; left: 0px;">Add Hospital</button>
+          <button type="button" [routerLink]="['/addhospital']" class="btn btn-outline-secondary" style="position: absolute; left: 0px;">Add Hospital</button>
         </div>
         <br/>
         <br/>
