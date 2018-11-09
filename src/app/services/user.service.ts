@@ -5,6 +5,8 @@ import { catchError, retry, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {CacheService} from '../services/cache.service';
 import { LoginUserResponseModel } from '../models/LoginUserResponseModel';
+import { UserAppointmentsResponseModel } from '../models/UserAppointmentsResponseModel';
+import {getDateFromYYYYMMDD} from '../utiities/datetimeUtility';
 
 @Injectable()
 export class UserService {  
@@ -41,5 +43,20 @@ export class UserService {
 
   addHospital(userId, data){
     return this.apiwrapper.addHospital(userId, data);
+  }
+
+  getAppointmentsForUserId(userId){
+    return this.apiwrapper.getAppointmentsForUserId(userId).pipe(
+      map(res => {
+        let hospitals = res.hospitals;
+        hospitals.forEach(hospital => {
+          hospital.appointments.forEach(appointment => {
+            appointment.dateOfAppointmentLong = getDateFromYYYYMMDD(appointment.dateOfAppointment);
+          });
+        });
+        return hospitals;
+    }),
+      errorModel => errorModel
+    );
   }
 }

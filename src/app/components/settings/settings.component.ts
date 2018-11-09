@@ -5,6 +5,7 @@ import { ErrorModel } from '../../models/ErrorModel';
 import { ErrorStatus } from '../../apis/apiErrorStatus';
 import { MatSnackBar } from '@angular/material';
 import {Router} from '@angular/router';
+import {getDateFromDDMMYYYY} from '../../utiities/datetimeUtility';
 
 @Component({
   selector: 'app-settings',
@@ -21,11 +22,7 @@ export class SettingsComponent implements OnInit {
     .subscribe(userDetails => {
       let userTemp:any = {};
       userTemp = userDetails;
-      let dobStr =userTemp.dateOfBirth;
-      var parts = dobStr.split("/");
-      var dt = new Date(parseInt(parts[2], 10),
-                        parseInt(parts[1], 10) - 1,
-                        parseInt(parts[0], 10));
+      var dt = getDateFromDDMMYYYY(userTemp.dateOfBirth);
       userTemp.dateOfBirth = dt;
       this.user = userTemp;
     },
