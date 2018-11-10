@@ -4,22 +4,17 @@
       <br/>
       <h6>Add hospital</h6>
       <br/>
-      <div [hidden]="displaySuccess">
-        <p>Enter hospital number and name below. You should have this information from the hospital.</p>
-        <form #addhospitalform="ngForm" (ngSubmit)="onSubmit(addhospitalform)">
-          <div class="form-group">
-            <input type="text" class="form-control" id="hospitalNumber" placeholder="Hospital number" required name="number" ngModel>
+      <p>Enter hospital number and name below. You should have this information from the hospital.</p>
+      <form #addhospitalform="ngForm" (ngSubmit)="onSubmit(addhospitalform)">
+        <div class="form-group">
+          <input type="text" class="form-control" id="hospitalNumber" placeholder="Hospital number" required name="number" ngModel>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="hospitalName" placeholder="Hospital name" required name="name" ngModel>
           </div>
-          <div class="form-group">
-              <input type="text" class="form-control" id="hospitalName" placeholder="Hospital name" required name="name" ngModel>
-            </div>
-          <button type="submit" class="btn btn-primary col" [disabled]="disableButton" >Add Hospital</button>
-        </form>
-        <button type="button" class="btn btn-link col" [routerLink]="['/main']">Back</button>
-      </div>
-      <div [hidden]="!displaySuccess">
-        We have sent an email. Please follow instructions in the email.
-      </div>
+        <button type="submit" class="btn btn-primary col">Add Hospital</button>
+      </form>
+      <button type="button" class="btn btn-link col" [routerLink]="['/main']">Back</button>
     </div>
   </div>
   

@@ -13,7 +13,13 @@ import {getDateFromDDMMYYYY} from '../../utiities/datetimeUtility';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-  user={};
+  user={
+    firstName:'',
+    lastName:'',
+    dateOfBirth:'',
+    username:'',
+    email:''
+  };
   constructor(private router: Router, private snackbar:MatSnackBar, private cacheService:CacheService, private userService:UserService) { }
 
   ngOnInit() {
