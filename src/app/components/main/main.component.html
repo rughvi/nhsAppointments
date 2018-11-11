@@ -55,10 +55,10 @@
               <div class="row flex-row flex-nowrap card-group">
                   <div class="col-6 col-xs-9" *ngFor="let appointment of userHospitalAppointment.appointments" style="margin: 5px;">
                       <div class="card border-light mb-3">
-                        <div class="card-header">{{appointment.dateOfAppointmentLong | date:'dd/MM/yyyy @ h:mma'}}</div>
+                        <div class="card-header">{{appointment.dateOfAppointmentLong | date:'dd/MM/yyyy'}}</div>
                         <div class="card-body text-dark">
-                          <h5 class="card-title">{{appointment.dateOfAppointmentLong | date:'EEE'}}</h5>
-                          <p class="card-text">Some quick example text to build on the .</p>
+                          <h5 class="card-title">{{appointment.dateOfAppointmentLong | date:'EEE @ h:mma'}}</h5>
+                          <button class="btn btn-outline-dark" (click)="print(appointment)">print</button>
                         </div>
                       </div>
                   </div>                  
