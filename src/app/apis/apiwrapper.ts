@@ -87,6 +87,16 @@ export class apiwrapper{
         let authenticationToken = this.cacheService.getAuthenticationToken();
     }
 
+    //post to create appointments for the userid - only for POC
+    createAppointments(userId){
+        let url = apiconfig.createUserAppointmentsPostUrl.replace(/{userId}/g,userId);
+        let httpOptions = this.getHeaderOptions();
+        return this.http.post(url, {}, httpOptions).pipe(
+            map(res=> res),
+            catchError(this.handleError)
+        );
+    }
+
     // TODO
     // get appointments for the user id
     getAppointmentsForUserId(userId){

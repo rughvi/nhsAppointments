@@ -16,11 +16,34 @@
         <hr/>
         <hr/>
         <div class="row">          
-          <button type="button" [routerLink]="['/addhospital']" class="btn btn-outline-primary col-12" style="position: absolute; left: 0px;">Add Hospital</button>
+          <button type="button" (click)="open(content)" class="btn btn-outline-primary col-12" style="position: absolute; left: 0px;">Add Hospital</button>
         </div>
         <br/>
         <br/>
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal-basic-title">Profile update</h6>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #addhospitalform="ngForm">
+              <div class="form-group">
+                <input type="text" class="form-control" id="hospitalNumber" placeholder="Hospital number" required name="number" ngModel
+                pattern="\d*">
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" id="hospitalName" placeholder="Hospital name" required name="name" ngModel>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" ngbAutofocus class="btn btn-outline-dark" (click)="modal.close(addhospitalform)" [disabled]="!addhospitalform.valid">Add Hospital</button>
+          </div>
+        </ng-template>
         <h5>Appointments</h5>
+        <hr/>
         <div *ngIf="fetching" class="loader"></div>        
         <div *ngIf="userHospitalAppointments?.length > 0">
           <div *ngFor="let userHospitalAppointment of userHospitalAppointments">
