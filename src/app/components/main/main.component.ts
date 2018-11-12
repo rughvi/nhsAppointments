@@ -79,6 +79,12 @@ export class MainComponent implements OnInit {
     },() => {});
   }
 
+  logout(){
+    console.log('calling logout');
+    this.cacheService.clearCache();
+    this.router.navigate(['/login']);
+  }
+
   print(appointment:AppointmentModel){
     let printContents, popupWin;
     printContents = this.appointmentMockData(appointment);//document.getElementById('print-section').innerHTML;
