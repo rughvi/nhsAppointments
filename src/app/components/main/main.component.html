@@ -8,8 +8,8 @@
           </button>
           <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse  pull-right" id="navbarsDefault">
             <ul class="nav navbar-nav navbar-right pull-right">
-                <li><a class="nav-link" [routerLink]="['/settings']"><span class="glyphicon glyphicon-user"></span> Settings</a></li>
-                <li><a class="nav-link" ><label (click)="logout()" class="la la-trash">Logout</label></a></li>
+                <li><a class="nav-link" [routerLink]="['/settings']"><i class="fa fa-cog"></i> Settings</a></li>
+                <li><a class="nav-link" ><label (click)="logout()" class="la la-trash"><i class="fa fa-sign-out"></i> Logout</label></a></li>
               </ul>
           </div>
         </nav>
@@ -63,7 +63,7 @@
                         <div class="card-header">{{appointment.dateOfAppointmentLong | date:'dd/MM/yyyy'}}</div>
                         <div class="card-body text-dark">
                           <h5 class="card-title">{{appointment.dateOfAppointmentLong | date:'EEE @ h:mma'}}</h5>
-                          <button class="btn btn-outline-dark" (click)="print(appointment)">print</button>
+                          <button class="btn btn-outline-dark" (click)="print(appointment)">print <i class="fa fa-print"></i></button>
                         </div>
                       </div>
                   </div>                  

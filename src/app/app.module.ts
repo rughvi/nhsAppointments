@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MAT_DATE_LOCALE} from '@angular/material';
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import {apiwrapper} from './apis/apiwrapper';
 
@@ -62,7 +61,8 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatSnackBarModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AngularFontAwesomeModule
   ],
   providers: [AuthGuardService, UserService, CacheService, AppointmentsService, apiwrapper,
     {provide:MAT_DATE_LOCALE, useValue:'en-GB'}],
