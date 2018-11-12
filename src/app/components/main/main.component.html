@@ -1,7 +1,7 @@
   <div class="container">
       <div class="offset-lg-2 col-lg-8">
-        <nav  class="navbar navbar-dark bg-primary fixed-top">
-          <a class="navbar-brand" href="#">Welcome,{{username}}</a>
+        <nav  class="offset-lg-2 col-lg-8 navbar navbar-dark bg-primary fixed-top">
+          <a class="navbar-brand" href="#">Welcome {{username}}</a>
           <button class="navbar-toggler hidden-sm-down" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" 
             data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,9 +13,7 @@
               </ul>
           </div>
         </nav>
-        <hr/>
-        <hr/>
-        <br/>
+        <br/><br/><br/>
         <div class="row">          
           <button type="button" (click)="open(content)" class="btn btn-outline-primary col-12" style="position: absolute; left: 0px;">Add Hospital</button>
         </div>
@@ -62,7 +60,7 @@
                       <div class="card border-light mb-3">
                         <div class="card-header">{{appointment.dateOfAppointmentLong | date:'dd/MM/yyyy'}}</div>
                         <div class="card-body text-dark">
-                          <h5 class="card-title">{{appointment.dateOfAppointmentLong | date:'EEE @ h:mma'}}</h5>
+                          <h5 class="card-title">{{appointment.dateOfAppointmentLong | date:'EEE '}}{{appointment.timeOfAppointment}}</h5>
                           <button class="btn btn-outline-dark" (click)="print(appointment)">print <i class="fa fa-print"></i></button>
                         </div>
                       </div>
