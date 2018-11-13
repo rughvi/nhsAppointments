@@ -60,7 +60,7 @@
                       <div class="card border-light mb-3">
                         <div class="card-header">{{appointment.dateOfAppointmentLong | date:'dd/MM/yyyy'}}</div>
                         <div class="card-body text-dark">
-                          <h5 class="card-title">{{appointment.dateOfAppointmentLong | date:'EEE '}}{{appointment.timeOfAppointment}}</h5>
+                          <h6 class="card-title">{{appointment.dateOfAppointmentLong | date:'EEE '}}{{appointment.timeOfAppointment}}</h6>
                           <button class="btn btn-outline-dark" (click)="print(appointment)">print <i class="fa fa-print"></i></button>
                         </div>
                       </div>
