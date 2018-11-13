@@ -85,6 +85,20 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  deleteAllAppointments(){
+    let user = this.cacheService.getCurrentUser();
+    this.fetching = true;    
+    this.appointmentsService.deleteAllAppointmentsForUserId(user.id)
+    .subscribe(response => {
+        this.getUserHospitalAppointments();
+      },
+      errorModel => {
+        //TODO
+        this.fetching = false;
+      },
+      () => {});
+  }
+
   print(appointment:AppointmentModel){
     let printContents, popupWin;
     printContents = this.appointmentMockData(appointment);//document.getElementById('print-section').innerHTML;

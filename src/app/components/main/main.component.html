@@ -8,8 +8,9 @@
           </button>
           <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse  pull-right" id="navbarsDefault">
             <ul class="nav navbar-nav navbar-right pull-right">
+                <li><a class="nav-link" ><label (click)="deleteAllAppointments()" class="la la-trash"> Delete Appointments</label></a></li>
                 <li><a class="nav-link" [routerLink]="['/settings']"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a class="nav-link" ><label (click)="logout()" class="la la-trash"><i class="fa fa-sign-out"></i> Logout</label></a></li>
+                <li><a class="nav-link" ><label (click)="logout()" class="la la-trash"><i class="fa fa-sign-out"></i> Logout</label></a></li>                                
               </ul>
           </div>
         </nav>

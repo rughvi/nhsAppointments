@@ -116,6 +116,23 @@ export class apiwrapper{
         );
     }
 
+    deleteAllAppointmentsForUserId(userId){
+        let url = apiconfig.userAppointmentsDeleteUrl.replace(/{userId}/g,userId);
+        console.log('Delete user appointments url ' + url);
+        let authenticationToken = this.cacheService.getAuthenticationToken();
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+            // "Content-Type": "application/x-www-form-urlencoded",
+              'Authorization': 'Bearer ' + authenticationToken
+            })
+          };
+        return this.http.delete<UserAppointmentsResponseModel>(url, httpOptions).pipe(
+            map(res => res),
+            catchError(this.handleError)
+        );
+    }
+
     private handleError<T extends ErrorModel>(error:any) {
         let errorModel = apiwrapper.getErrorModel(error);
         let item = {} as T;
