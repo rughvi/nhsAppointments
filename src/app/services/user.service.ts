@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import {CacheService} from '../services/cache.service';
 import { LoginUserResponseModel } from '../models/LoginUserResponseModel';
 import { UserAppointmentsResponseModel } from '../models/UserAppointmentsResponseModel';
-import {getDateFromYYYYMMDD} from '../utiities/datetimeUtility';
+import {getDateFromDDMMYYYY} from '../utiities/datetimeUtility';
 
 @Injectable()
 export class UserService {  
@@ -51,7 +51,7 @@ export class UserService {
         let hospitals = res.hospitals;
         hospitals.forEach(hospital => {
           hospital.appointments.forEach(appointment => {
-            appointment.dateOfAppointmentLong = getDateFromYYYYMMDD(appointment.dateOfAppointment);
+            appointment.dateOfAppointmentLong = getDateFromDDMMYYYY(appointment.dateOfAppointment);
           });
         });
         return hospitals;
